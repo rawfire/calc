@@ -1,10 +1,12 @@
 const defaultValue = 0;
 let currentResult = defaultValue;
 
+// gets input from input field
 function getUserNumberInput() {
   return parseInt(userInput.value);
 }
 
+// generates and writes calculation log
 function createWriteOutput(operator, resultBefore, calcNum) {
   const calcDescription = `${resultBefore} ${operator} ${calcNum}`;
   outputResult(currentResult, calcDescription);
@@ -16,10 +18,12 @@ function add() {
   currentResult += enteredNum;
   createWriteOutput("+", initialResult, enteredNum);
 }
-// we have to build the description first  of calcDescription to
-// be able to display a currentResult before the currentResult is change
-// we also need to create an initialResult variable to place in function
-// so it doesn't get confused with currentResult already calculated
+/* 
+we have to build the description first  of calcDescription to
+be able to display a currentResult before the currentResult is change
+we also need to create an initialResult variable to place in function
+so it doesn't get confused with currentResult already calculated
+*/
 
 function subtract() {
   const enteredNum = getUserNumberInput();
