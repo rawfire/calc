@@ -1,5 +1,6 @@
 const defaultValue = 0;
 let currentResult = defaultValue;
+let logEntries = [];
 
 // gets input from input field
 function getUserNumberInput() {
@@ -12,12 +13,26 @@ function createWriteOutput(operator, resultBefore, calcNum) {
   outputResult(currentResult, calcDescription);
 }
 
+//  writes the log of the equations into am object
+function writeToLog(operationIdentifier, prevResult, operationNum, newResult) {
+  const logEntry = {
+    operation: operationIdentifier,
+    prevResult: prevResult,
+    number: operationNum,
+    Result: newResult,
+  };
+  logEntries.push(logEntry);
+  console.log(logEntries);
+}
+
 function add() {
   const enteredNum = getUserNumberInput();
   const initialResult = currentResult;
   currentResult += enteredNum;
   createWriteOutput("+", initialResult, enteredNum);
+  writeToLog("ADD", initialResult, enteredNum, currentResult);
 }
+
 /* 
 we have to build the description first  of calcDescription to
 be able to display a currentResult before the currentResult is change
@@ -30,6 +45,7 @@ function subtract() {
   const initialResult = currentResult;
   currentResult -= enteredNum;
   createWriteOutput("-", initialResult, enteredNum);
+  writeToLog("SUBTRACT", initialResult, enteredNum, currentResult);
 }
 
 function multiply() {
@@ -37,6 +53,7 @@ function multiply() {
   const initialResult = currentResult;
   currentResult *= enteredNum;
   createWriteOutput("x", initialResult, enteredNum);
+  writeToLog("MULTIPLY", initialResult, enteredNum, currentResult);
 }
 
 function divide() {
@@ -44,7 +61,9 @@ function divide() {
   const initialResult = currentResult;
   currentResult /= enteredNum;
   createWriteOutput("/", initialResult, enteredNum);
+  writeToLog("DIVIDE", initialResult, enteredNum, currentResult);
 }
+
 addBtn.addEventListener("click", add);
 subtractBtn.addEventListener("click", subtract);
 multiplyBtn.addEventListener("click", multiply);
